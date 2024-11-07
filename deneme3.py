@@ -61,17 +61,13 @@ class AddNumbers(Resource):
 # İki sayının çarpımını yapan yeni endpoint
 class MultiplyNumbers(Resource):
     def get(self):
-        # İki sayıyı parametre olarak al
         try:
             num1 = float(request.args.get('num1'))
             num2 = float(request.args.get('num2'))
         except (TypeError, ValueError):
             return {'error': 'Lütfen geçerli iki sayı giriniz.'}, 400
 
-        # Çarpımı hesapla
         result = num1 * num2
-
-        # Sonucu JSON formatında döndür
         return {'result': result}, 200
 
 # URL endpointlerini ekleme
@@ -82,4 +78,4 @@ api.add_resource(AddNumbers, '/add_numbers')
 api.add_resource(MultiplyNumbers, '/multiply_numbers')  # Çarpma endpoint'i
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=44)  # Portu 44 olarak ayarladık
